@@ -3,4 +3,10 @@
 <app-cashaccount></app-cashaccount>
 
 <h3>Investments</h3>
-<app-investment></app-investment>
+<app-investment
+    *ngFor="let item of stocks; let i = index"
+    [ticker]='item.ticker'
+    [bought_price]='item.bought_price'
+    [current_price]='item.current_price'
+    [quantity]='item.quantity'>
+</app-investment>
