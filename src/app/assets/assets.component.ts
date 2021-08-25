@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CashAccService } from 'src/services/cash-acc.service';
 
 @Component({
   selector: 'app-assets',
@@ -8,13 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class AssetsComponent implements OnInit {
 
   accounts = [
-    {name:'First account', value:600},
-    {name:'second acc', value:900},
-    {name:'third acc', value:3030}
+    {name:'askjdn', amount:5}
   ]
-  constructor() { }
+
+  constructor(private cashServ:CashAccService) { }
 
   ngOnInit(): void {
+    this.getAllCashAcc()
+  }
+  getAllCashAcc(){
+   this.cashServ.getCashData().subscribe((data:any)=> {
+      console.log(data)
+      this.accounts = data
+    })
+
   }
 
 }

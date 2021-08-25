@@ -3,8 +3,9 @@
 <app-cashaccount
 *ngFor="let item of accounts; let i=index"
 [name]='item.name'
-[value]='item.value'>
+[amount]='item.amount'>
 </app-cashaccount>
+<button (click)=getAllCashAcc()>oewf</button>
 
 <h3>Investments</h3>
 <app-investment></app-investment>
