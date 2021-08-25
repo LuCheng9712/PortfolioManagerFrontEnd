@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CashaccountComponent implements OnInit {
   @Input() name:string = 'testing'
   @Input() amount:number = 0
+  @Input() id:number = 0
 
   constructor() { }
 
