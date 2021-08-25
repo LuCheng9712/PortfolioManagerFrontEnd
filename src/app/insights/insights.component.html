@@ -1,1 +1,15 @@
-<p>insights works!</p>
+<h2>Insights</h2>
+    <div>
+        <h3>News for Today</h3>
+        <p>{{news.summary}}</p>
+        
+        <form>
+            Get Quote of Stock: <input type="text" ng-model="ticker">
+        </form>
+        <p>You entered: {{ticker}}</p>
+        <button (click)='getQuote()'>Get a quote</button>
+        <p>{{quote}}</p>
+    </div>
+
+
+        
