@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PMInvestmentService } from '../../services/pminvestment.service'
+import { CashAccService } from 'src/services/cash-acc.service';
 
 @Component({
   selector: 'app-assets',
@@ -8,7 +9,7 @@ import { PMInvestmentService } from '../../services/pminvestment.service'
 })
 export class AssetsComponent implements OnInit {
 
-  constructor(private pminvestmentService:PMInvestmentService) { }
+  constructor(private cashServ:CashAccService, private pminvestmentService:PMInvestmentService) { }
 
   stocks = [
     {id:0,
@@ -19,16 +20,26 @@ export class AssetsComponent implements OnInit {
       avgPurchasePrice:0}
   ]
 
+  accounts = [
+    {name:'askjdn', amount:5}
+  ]
+
   ngOnInit(): void {
-    this.makeServiceCall();
+    this.getAllCashAcc()
+    this.getAllInvestments();
   }
 
-  makeServiceCall(){
-    this.pminvestmentService.getApiData()
-      .subscribe( (data:any)=>{
-        console.log(data)
-        this.stocks = data
-      })
-  }
+  getAllCashAcc() {
+    this.cashServ.getCashData().subscribe((data:any)=> {
+       console.log(data)
+       this.accounts = data
+     })
+   }
 
+  getAllInvestments(){
+    this.pminvestmentService.getApiData().subscribe( (data:any)=>{
+      console.log(data)
+      this.stocks = data
+    })
+  }
 }

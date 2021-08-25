@@ -1,6 +1,11 @@
 <p>assets works!</p>
 <h3>Cash Accounts</h3>
-<app-cashaccount></app-cashaccount>
+<app-cashaccount
+    *ngFor="let item of accounts; let i=index"
+    [name]='item.name'
+    [amount]='item.amount'>
+</app-cashaccount>
+<button (click)=getAllCashAcc()>Get Accounts</button>
 
 <h3>Investments</h3>
 <app-investment

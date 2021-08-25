@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-cashaccount',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cashaccount.component.css']
 })
 export class CashaccountComponent implements OnInit {
+  @Input() name:string = 'testing'
+  @Input() amount:number = 0
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }

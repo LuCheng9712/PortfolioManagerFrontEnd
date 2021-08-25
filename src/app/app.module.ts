@@ -9,7 +9,6 @@ import { CashaccountComponent } from './assets/cashaccount/cashaccount.component
 import { InvestmentComponent } from './assets/investment/investment.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     AppComponent,
