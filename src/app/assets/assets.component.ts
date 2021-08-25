@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssetsComponent implements OnInit {
 
+  accounts = [
+    {name:'First account', value:600},
+    {name:'second acc', value:900}
+  ]
   constructor() { }
 
   ngOnInit(): void {

@@ -1,6 +1,10 @@
 <p>assets works!</p>
 <h3>Cash Accounts</h3>
-<app-cashaccount></app-cashaccount>
+<app-cashaccount
+*ngFor="let item of accounts; let i=index"
+[name]='item.name'
+[value]='item.value'>
+</app-cashaccount>
 
 <h3>Investments</h3>
 <app-investment></app-investment>
