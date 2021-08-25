@@ -4,9 +4,9 @@
 
 <h3>Investments</h3>
 <app-investment
-    *ngFor="let item of stocks; let i = index"
+    *ngFor="let item of stocks"
+    [name]='item.name'
     [ticker]='item.ticker'
-    [bought_price]='item.bought_price'
-    [current_price]='item.current_price'
+    [avgPurchasePrice]='item.avgPurchasePrice'
     [quantity]='item.quantity'>
 </app-investment>

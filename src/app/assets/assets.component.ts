@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PMInvestmentService } from '../../services/pminvestment.service'
 
 @Component({
   selector: 'app-assets',
@@ -7,24 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssetsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pminvestmentService:PMInvestmentService) { }
 
   stocks = [
-    {ticker:'AAPL', 
-      bought_price:134, 
-      current_price:144,
-      quantity: 10},
-    {ticker:'GOOGL', 
-      bought_price:3345, 
-      current_price:3400,
-      quantity: 27},
-    {ticker:'FB', 
-      bought_price:34, 
-      current_price:24.9,
-      quantity: 33},
+    {id:0,
+      ticker:'', 
+      name: '',
+      type: '',
+      quantity: 0,
+      avgPurchasePrice:0}
   ]
 
   ngOnInit(): void {
+    this.makeServiceCall();
+  }
+
+  makeServiceCall(){
+    this.pminvestmentService.getApiData()
+      .subscribe( (data:any)=>{
+        console.log(data)
+        this.stocks = data
+      })
   }
 
 }

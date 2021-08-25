@@ -7,6 +7,8 @@ import { AssetsComponent } from './assets/assets.component';
 import { InsightsComponent } from './insights/insights.component';
 import { CashaccountComponent } from './assets/cashaccount/cashaccount.component';
 import { InvestmentComponent } from './assets/investment/investment.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -14,11 +16,12 @@ import { InvestmentComponent } from './assets/investment/investment.component';
     AssetsComponent,
     InsightsComponent,
     CashaccountComponent,
-    InvestmentComponent
+    InvestmentComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
