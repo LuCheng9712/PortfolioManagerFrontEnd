@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { AssetsComponent } from './assets/assets.component';
 import { InsightsComponent } from './insights/insights.component';
 import { CashaccountComponent } from './assets/cashaccount/cashaccount.component';
+import { InvestmentComponent } from './assets/investment/investment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AssetsComponent,
     InsightsComponent,
-    CashaccountComponent
+    CashaccountComponent,
+    InvestmentComponent
   ],
   imports: [
     BrowserModule,
