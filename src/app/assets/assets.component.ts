@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PMInvestmentService } from '../../services/pminvestment.service'
+import { PMInvestmentService } from 'src/services/pminvestment.service'
 import { CashAccService } from 'src/services/cash-acc.service';
 
 @Component({
