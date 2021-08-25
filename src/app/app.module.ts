@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     AssetsComponent,
     InsightsComponent,
     CashaccountComponent,
-    InvestmentComponent
+    InvestmentComponent,
   ],
   imports: [
     BrowserModule,

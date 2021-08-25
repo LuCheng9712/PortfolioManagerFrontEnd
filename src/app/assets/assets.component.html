@@ -6,6 +6,7 @@
 [amount]='item.amount'
 [id]='item.id'>
 </app-cashaccount>
+
 <button (click)=getAllCashAcc()>Get All Accounts</button><br/><br/>
 <h5>Add an account</h5><br/>
 <form>
@@ -19,4 +20,10 @@
 <button (click)=deleteCashAccById()>Delete Account</button><br/>
 
 <h3>Investments</h3>
-<app-investment></app-investment>
+<app-investment
+    *ngFor="let item of stocks"
+    [name]='item.name'
+    [ticker]='item.ticker'
+    [avgPurchasePrice]='item.avgPurchasePrice'
+    [quantity]='item.quantity'>
+</app-investment>
