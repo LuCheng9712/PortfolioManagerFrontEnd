@@ -1,4 +1,6 @@
-<p>assets works!</p>
+<div class="container">
+    <div class= "row">
+        <div class="col-sm">
 <h3>Cash Accounts</h3>
 <app-cashaccount
 *ngFor="let item of accounts; let i=index"
@@ -25,7 +27,9 @@
 <h5>Remove Account By Name</h5><br/>
 <input type='text' min="0" [(ngModel)]='accountRemoverName' name='Remove Account Name' placeholder='Account Name'/><br/><br/>
 <button (click)=deleteCashAccByName()>Delete Account</button><br/>
+</div>
 
+<div class="col-sm">
 <!--Investments-->
 <h3>Investments</h3>
 <app-investment
@@ -35,3 +39,6 @@
     [avgPurchasePrice]='item.avgPurchasePrice'
     [quantity]='item.quantity'>
 </app-investment>
+</div>
+</div>
+</div>
