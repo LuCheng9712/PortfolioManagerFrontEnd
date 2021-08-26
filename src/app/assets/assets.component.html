@@ -1,11 +1,23 @@
 <p>assets works!</p>
 <h3>Cash Accounts</h3>
 <app-cashaccount
-    *ngFor="let item of accounts; let i=index"
-    [name]='item.name'
-    [amount]='item.amount'>
+*ngFor="let item of accounts; let i=index"
+[name]='item.name'
+[amount]='item.amount'
+[id]='item.id'>
 </app-cashaccount>
-<button (click)=getAllCashAcc()>Get Accounts</button>
+
+<button (click)=getAllCashAcc()>Get All Accounts</button><br/><br/>
+<h5>Add an account</h5><br/>
+<form>
+    <input type='text' [(ngModel)]='paramObj.name' name='name' placeholder='Account Name'/>
+    <input type='number' min="0" [(ngModel)]='paramObj.amount' name='amount' placeholder='Initial Deposit'/>
+</form><br/>
+<button (click)=addCashAcc()>Add Account</button><br/><br/>
+<h5>Remove Account</h5><br/>
+<input type='number' min="0" [(ngModel)]='accountRemover' name='Remove Account'/><br/><br/>
+
+<button (click)=deleteCashAccById()>Delete Account</button><br/>
 
 <h3>Investments</h3>
 <app-investment

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
 import { PMInvestmentService } from 'src/services/pminvestment.service'
 import { CashAccService } from 'src/services/cash-acc.service';
 
@@ -9,6 +10,8 @@ import { CashAccService } from 'src/services/cash-acc.service';
 })
 export class AssetsComponent implements OnInit {
 
+  paramObj = {name:'', amount:0}
+  accountRemover = 0
   constructor(private cashServ:CashAccService, private pminvestmentService:PMInvestmentService) { }
 
   stocks = [
@@ -22,7 +25,7 @@ export class AssetsComponent implements OnInit {
   ]
 
   accounts = [
-    {name:'askjdn', amount:5}
+    {name:'askjdn', amount:5, id:0}
   ]
 
   ngOnInit(): void {
@@ -30,13 +33,30 @@ export class AssetsComponent implements OnInit {
     this.getAllInvestments();
   }
 
+  //cashacc methods
   getAllCashAcc() {
     this.cashServ.getCashData().subscribe((data:any)=> {
        console.log(data)
        this.accounts = data
      })
    }
+   addCashAcc(){
+    this.cashServ.addCashAcc(this.paramObj).subscribe((data:any)=> {
+      console.log(data)
+    })
+    this.paramObj = {name:'', amount:0}
+    this.getAllCashAcc()
+  }
+  deleteCashAccById(){
+    this.cashServ.removeCashAccId(this.accountRemover).subscribe((data:any)=> {
+      console.log(data)
+    })
+    this.accountRemover = 0
+    this.getAllCashAcc()
+  }
 
+
+  //investment methods
   getAllInvestments(){
     this.pminvestmentService.getApiData().subscribe((data:any) => {
       this.stocks = data
