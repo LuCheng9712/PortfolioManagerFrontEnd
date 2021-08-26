@@ -43,23 +43,24 @@ export class AssetsComponent implements OnInit {
    addCashAcc(){
     this.cashServ.addCashAcc(this.paramObj).subscribe((data:any)=> {
       console.log(data)
+      this.paramObj = {name:'', amount:0}
+      this.getAllCashAcc()
     })
-    this.paramObj = {name:'', amount:0}
-    this.getAllCashAcc()
+    
   }
   deleteCashAccById(){
     this.cashServ.removeCashAccId(this.accountRemoverId).subscribe((data:any)=> {
       console.log(data)
+      this.accountRemoverId = 0
+      this.getAllCashAcc()
     })
-    this.accountRemoverId = 0
-    this.getAllCashAcc()
   }
   deleteCashAccByName(){
     this.cashServ.removeCashAccName(this.accountRemoverName).subscribe((data:any)=> {
       console.log(data)
+      this.accountRemoverName = ''
+      this.getAllCashAcc()
     })
-    this.accountRemoverName = ''
-    this.getAllCashAcc()
   }
 
 
