@@ -3,10 +3,10 @@
         <div class="col-sm">
 <h3>Cash Accounts</h3>
 <app-cashaccount
-*ngFor="let item of accounts; let i=index"
-[name]='item.name'
-[amount]='item.amount'
-[id]='item.id'>
+    *ngFor="let item of accounts; let i=index"
+    [name]='item.name'
+    [amount]='item.amount'
+    [id]='item.id'>
 </app-cashaccount>
 
 <button (click)=getAllCashAcc()>Get All Accounts</button><br/><br/>
@@ -32,13 +32,29 @@
 <div class="col-sm">
 <!--Investments-->
 <h3>Investments</h3>
+<button (click)=getAllInvestments()>Update Investments</button><br>
+<form>
+    <input type='text' [(ngModel)]='newStockParams.ticker' name='ticker' placeholder='Ticker'/>
+    <input type='text' [(ngModel)]='newStockParams.name' name='name' placeholder='Name'/>
+    <input type='text' [(ngModel)]='newStockParams.type' name='type' placeholder='Investment Type'/>
+    <input type='number' min="0" [(ngModel)]='newStockParams.quantity' name='quantity' placeholder='Quantity to purchase'/>
+</form>
+<button (click)=buyInvestment()>Buy Shares</button><br>
+<form>
+    <input type='text' [(ngModel)]='deleteStockTicker' name='ticker' placeholder='Ticker'/>
+</form>
+<button (click)=sellInvestment()>Sell All Shares</button><br>
 <app-investment
     *ngFor="let item of stocks"
     [name]='item.name'
     [ticker]='item.ticker'
+    [currPrice]='item.currPrice'
     [avgPurchasePrice]='item.avgPurchasePrice'
     [quantity]='item.quantity'>
+    [quantity]='item.quantity'
+    (buySellEvent)='handleBuySell($event)'>
 </app-investment>
 </div>
 </div>
 </div>
+   
