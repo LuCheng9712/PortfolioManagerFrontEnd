@@ -20,7 +20,18 @@
 <button (click)=deleteCashAccById()>Delete Account</button><br/>
 
 <h3>Investments</h3>
-<button (click)=updateInvestments()>Update Investments</button>
+<button (click)=getAllInvestments()>Update Investments</button><br>
+<form>
+    <input type='text' [(ngModel)]='newStockParams.ticker' name='ticker' placeholder='Ticker'/>
+    <input type='text' [(ngModel)]='newStockParams.name' name='name' placeholder='Name'/>
+    <input type='text' [(ngModel)]='newStockParams.type' name='type' placeholder='Investment Type'/>
+    <input type='number' min="0" [(ngModel)]='newStockParams.quantity' name='quantity' placeholder='Quantity to purchase'/>
+</form>
+<button (click)=buyInvestment()>Buy Shares</button><br>
+<form>
+    <input type='text' [(ngModel)]='stockDeleteParams.ticker' name='ticker' placeholder='Ticker'/>
+</form>
+<button (click)=sellInvestment()>Sell All Shares</button><br>
 <app-investment
     *ngFor="let item of stocks"
     [name]='item.name'

@@ -9,8 +9,18 @@ export class PMInvestmentService {
 
   constructor(private http:HttpClient) { }
 
-  getApiData(params=""){
-
-    return this.http.get(`${apiEndpoints.pmInvestments}${params}`)
+  getInvestmentData(endpoint=""){
+    return this.http.get(`${apiEndpoints.pmInvestments}${endpoint}`)
   }
+
+  addInvestment(params={id:0, ticker:"", name:"", type:"", quantity:0, avgPurchasePrice:0}, endpoint="") {
+    return this.http.post(`${apiEndpoints.pmInvestmentsAdd}${endpoint}`, params)
+  }
+
+  deleteInvestmentTicker(ticker:string, endpoint="") {
+    let e = `${apiEndpoints.pmInvestmentsDelete}${endpoint}`
+    console.log(e)
+    return this.http.delete(`${apiEndpoints.pmInvestmentsDelete}${endpoint}/${ticker}`)
+  }
+    
 }
