@@ -27,6 +27,7 @@ export class CashaccountComponent implements OnInit {
   }
 
   withdrawCash(){
+    if(this.amount<this.withdrawAmount){this.withdrawAmount=this.amount}
     this.cashServ.withdrawCash(this.id, this.withdrawAmount).subscribe((data:any)=> {
       console.log(data)
     })

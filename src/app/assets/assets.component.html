@@ -8,17 +8,25 @@
 </app-cashaccount>
 
 <button (click)=getAllCashAcc()>Get All Accounts</button><br/><br/>
+
+<!--Add Account-->
 <h5>Add an account</h5><br/>
 <form>
     <input type='text' [(ngModel)]='paramObj.name' name='name' placeholder='Account Name'/>
     <input type='number' min="0" [(ngModel)]='paramObj.amount' name='amount' placeholder='Initial Deposit'/>
 </form><br/>
-<button (click)=addCashAcc()>Add Account</button><br/><br/>
-<h5>Remove Account</h5><br/>
-<input type='number' min="0" [(ngModel)]='accountRemover' name='Remove Account'/><br/><br/>
+<button (click)=addCashAcc()>Add Account</button><br/>
 
+<!--Remove Account-->
+<h5>Remove Account By ID</h5><br/>
+<input type='number' min="0" [(ngModel)]='accountRemoverId' name='Remove Account'/><br/><br/>
 <button (click)=deleteCashAccById()>Delete Account</button><br/>
 
+<h5>Remove Account By Name</h5><br/>
+<input type='text' min="0" [(ngModel)]='accountRemoverName' name='Remove Account Name' placeholder='Account Name'/><br/><br/>
+<button (click)=deleteCashAccByName()>Delete Account</button><br/>
+
+<!--Investments-->
 <h3>Investments</h3>
 <app-investment
     *ngFor="let item of stocks"

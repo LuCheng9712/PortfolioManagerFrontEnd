@@ -11,7 +11,8 @@ import { CashAccService } from 'src/services/cash-acc.service';
 export class AssetsComponent implements OnInit {
 
   paramObj = {name:'', amount:0}
-  accountRemover = 0
+  accountRemoverId = 0
+  accountRemoverName = ''
   constructor(private cashServ:CashAccService, private pminvestmentService:PMInvestmentService) { }
 
   stocks = [
@@ -47,10 +48,17 @@ export class AssetsComponent implements OnInit {
     this.getAllCashAcc()
   }
   deleteCashAccById(){
-    this.cashServ.removeCashAccId(this.accountRemover).subscribe((data:any)=> {
+    this.cashServ.removeCashAccId(this.accountRemoverId).subscribe((data:any)=> {
       console.log(data)
     })
-    this.accountRemover = 0
+    this.accountRemoverId = 0
+    this.getAllCashAcc()
+  }
+  deleteCashAccByName(){
+    this.cashServ.removeCashAccName(this.accountRemoverName).subscribe((data:any)=> {
+      console.log(data)
+    })
+    this.accountRemoverName = ''
     this.getAllCashAcc()
   }
 
