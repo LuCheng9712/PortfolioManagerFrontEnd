@@ -60,14 +60,23 @@ export class AssetsComponent implements OnInit {
   getAllInvestments(){
     this.pminvestmentService.getApiData().subscribe((data:any) => {
       this.stocks = data
-      for (let d of this.stocks) {
-        let endpoint = "/get_current_price/id/".concat(String(d.id))
-        this.pminvestmentService.getApiData(endpoint).subscribe((price:any) => {
-          d.currPrice = price
-        })
-      }
+      this.getInvestmentCurrPrice();
       console.log(this.stocks)
     })
+  }
+
+  getInvestmentCurrPrice() {
+    for (let d of this.stocks) {
+      let endpoint = "/get_current_price/id/".concat(String(d.id))
+      this.pminvestmentService.getApiData(endpoint).subscribe((price:any) => {
+        d.currPrice = price
+      })
+    }
+  }
+
+  updateInvestments(){
+    this.getInvestmentCurrPrice();
+    this.getAllInvestments();
   }
 
 }

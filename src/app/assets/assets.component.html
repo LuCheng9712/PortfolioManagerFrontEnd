@@ -1,10 +1,10 @@
 <p>assets works!</p>
 <h3>Cash Accounts</h3>
 <app-cashaccount
-*ngFor="let item of accounts; let i=index"
-[name]='item.name'
-[amount]='item.amount'
-[id]='item.id'>
+    *ngFor="let item of accounts; let i=index"
+    [name]='item.name'
+    [amount]='item.amount'
+    [id]='item.id'>
 </app-cashaccount>
 
 <button (click)=getAllCashAcc()>Get All Accounts</button><br/><br/>
@@ -20,10 +20,12 @@
 <button (click)=deleteCashAccById()>Delete Account</button><br/>
 
 <h3>Investments</h3>
+<button (click)=updateInvestments()>Update Investments</button>
 <app-investment
     *ngFor="let item of stocks"
     [name]='item.name'
     [ticker]='item.ticker'
+    [currPrice]='item.currPrice'
     [avgPurchasePrice]='item.avgPurchasePrice'
     [quantity]='item.quantity'>
 </app-investment>
