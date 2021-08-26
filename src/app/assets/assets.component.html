@@ -37,7 +37,7 @@
 </form>
 <button (click)=buyInvestment()>Buy Shares</button><br>
 <form>
-    <input type='text' [(ngModel)]='stockDeleteParams.ticker' name='ticker' placeholder='Ticker'/>
+    <input type='text' [(ngModel)]='deleteStockTicker' name='ticker' placeholder='Ticker'/>
 </form>
 <button (click)=sellInvestment()>Sell All Shares</button><br>
 <app-investment
@@ -46,5 +46,6 @@
     [ticker]='item.ticker'
     [currPrice]='item.currPrice'
     [avgPurchasePrice]='item.avgPurchasePrice'
-    [quantity]='item.quantity'>
+    [quantity]='item.quantity'
+    (buySellEvent)='handleBuySell($event)'>
 </app-investment>

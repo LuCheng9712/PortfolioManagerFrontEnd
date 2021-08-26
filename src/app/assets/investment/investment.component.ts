@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-investment',
@@ -12,9 +12,30 @@ export class InvestmentComponent implements OnInit {
   @Input() avgPurchasePrice:number = 0
   @Input() quantity:number = 0
   @Input() currPrice:number = 0
+  @Input() buySellQuantity:number = 0
+
+  @Output() buySellEvent:EventEmitter<{ticker:string, 
+                                        buySellQuantity:number, 
+                                        currQuantity:number, 
+                                        isSell:boolean}> = new EventEmitter()
 
   constructor() { }
 
   ngOnInit(): void {}
+
+  buyShares() {
+    this.buySell(false)
+  }
+
+  sellShares() {
+    this.buySell(true)
+  }
+
+  buySell(isSell: boolean) {
+    this.buySellEvent.emit({ticker:this.ticker, 
+                            buySellQuantity:this.buySellQuantity, 
+                            currQuantity: this.quantity, 
+                            isSell:isSell})
+  }
 
 }

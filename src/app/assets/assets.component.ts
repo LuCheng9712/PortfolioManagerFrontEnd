@@ -17,7 +17,8 @@ export class AssetsComponent implements OnInit {
 
   stocks = [{id:0, ticker:'',  name: '', type: '', quantity: 0, avgPurchasePrice:0, currPrice:0}]
   newStockParams = {id: 0, ticker:"", name: "", type:"", quantity: 0, avgPurchasePrice: 0};
-  stockDeleteParams = {id: 0, ticker:""};
+  deleteStockTicker = "";
+  updateStockParams = {id: 0, ticker:"", name: "", type:"", quantity: 0, avgPurchasePrice: 0};
 
   accounts = [
     {name:'askjdn', amount:5, id:0}
@@ -93,15 +94,56 @@ export class AssetsComponent implements OnInit {
   }
 
   sellInvestment(){
-    console.log("test")
-    if (this.stockDeleteParams.ticker != "") {
-      console.log(this.stockDeleteParams.ticker)
-      this.pminvestmentService.deleteInvestmentTicker(this.stockDeleteParams.ticker, "/ticker/")
+    if (this.deleteStockTicker != "") {
+      console.log(this.deleteStockTicker)
+      this.pminvestmentService.deleteInvestmentTicker(this.deleteStockTicker, "/ticker/")
       .subscribe((data:any)=> {
         console.log(data)
         this.getAllInvestments()
       })
     }
+  }
+
+  handleBuySell(data:any) {
+    console.log(data)
+    let stock = this.getInvestment(data.ticker)
+    if (stock) {
+      return
+    }
+    if (data.isSell && data.buySellQuantity >= data.quantity) {
+      this.deleteStockTicker = data.ticker
+      this.sellInvestment()
+    } else if (data.isSell && data.buySellQuantity < data.quantity) {
+      this.updateStockParams.id = stock.id
+      this.updateStockParams.ticker = stock.ticker
+      this.updateStockParams.name = stock.name
+      this.updateStockParams.quantity = stock.quantity - data.buySellQuantity
+      this.updateStockParams.avgPurchasePrice = stock.avgPurchasePrice
+      this.updateInvestment()
+    } else if (!data.isSell) {
+      let endpoint = "/get_current_price/ticker/".concat(data.ticker)
+      this.pminvestmentService.getInvestmentData(endpoint).subscribe((price:any) => {
+        this.updateStockParams.id = stock.id
+        this.updateStockParams.ticker = stock.ticker
+        this.updateStockParams.name = stock.name
+        this.updateStockParams.quantity = stock.quantity - data.buySellQuantity
+        this.updateStockParams.avgPurchasePrice = stock.avgPurchasePrice
+        this.updateInvestment()
+      })
+    }
+  }
+
+  getInvestment(ticker:string){
+    for (let s of this.stocks) {
+      if (s.ticker == ticker) {
+        return s
+      }
+    }
+    return null
+  }
+
+  updateInvestment() {
+
   }
 
 }
