@@ -13,6 +13,8 @@ export class AssetsComponent implements OnInit {
   paramObj = {name:'', amount:0}
   accountRemoverId = 0
   accountRemoverName = ''
+  totalcash = 0
+
   constructor(private cashServ:CashAccService, private pminvestmentService:PMInvestmentService) { }
 
   stocks = [{id:0, ticker:'',  name: '', type: '', quantity: 0, avgPurchasePrice:0, currPrice:0}]
@@ -35,7 +37,14 @@ export class AssetsComponent implements OnInit {
     this.cashServ.getCashData().subscribe((data:any)=> {
        console.log(data)
        this.accounts = data
+       this.getTotalCash()
      })
+   }
+   getTotalCash(){
+    this.cashServ.getTotalCash().subscribe((data:any)=> {
+      console.log(data)
+      this.totalcash = data
+    })
    }
    addCashAcc(){
     this.cashServ.addCashAcc(this.paramObj).subscribe((data:any)=> {

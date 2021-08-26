@@ -18,3 +18,8 @@ button {
 .assetname {
     font-weight: bold;
 }
+
+#networth{
+    font-weight: bold;
+    font-size: 40px;
+}

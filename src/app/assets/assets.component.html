@@ -1,7 +1,15 @@
+<div class="container text-center">
+ <hr>
+ <span id="networth">Net Worth {{totalcash+totalInvestments | currency}}</span>
+ <hr>
+</div>
 <div class="container">
     <div class= "row">
         <div class="col-sm">
 <h3>Cash Accounts</h3>
+<hr>
+<p>Total Cash: {{totalcash | currency}}</p>
+<button (click)=getAllCashAcc() class="btn btn-primary">Update All Accounts</button><br/>
 <app-cashaccount
     *ngFor="let item of accounts; let i=index"
     [name]='item.name'
@@ -9,7 +17,6 @@
     [id]='item.id'>
 </app-cashaccount>
 
-<button (click)=getAllCashAcc() class="btn btn-primary">Update All Accounts</button><br/><br/>
 <hr>
 <!--Add Account-->
 <h5>Add an account</h5>

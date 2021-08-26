@@ -27,4 +27,7 @@ export class CashAccService {
   withdrawCash(id:number, withdrawAmount:number){
     return this.http.post(`${apiEndpoints.pmCashAccounts}/withdraw/${withdrawAmount}`, {id:`${id}`, name:'', amount:0})
   }
+  getTotalCash(){
+    return this.http.get(`${apiEndpoints.pmCashAccounts}/get_total`)
+  }
 }

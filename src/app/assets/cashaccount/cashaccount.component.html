@@ -2,7 +2,7 @@
 <div class="container">
 <div class="row">
 <div class="col-sm"> 
-    Account ID: {{id}} <br/>Account Name: <span class="assetname">{{name}}</span> <br/>Balance: ${{amount}} <br/><br/>
+    Account ID: {{id}} <br/>Account Name: <span class="assetname">{{name}}</span> <br/>Balance: {{amount | currency}} <br/><br/>
 </div>
 <div class="col-sm">
     <input type='number' min="0" [(ngModel)]='depositAmount' name='Deposit' size="1"/>
