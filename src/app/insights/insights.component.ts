@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { YahooFinService } from 'src/services/yahoo-fin.service';
 
 @Component({
   selector: 'app-insights',
@@ -14,24 +14,66 @@ export class InsightsComponent implements OnInit {
     go three ways after its sell-off. Investors should be cautious but stay engaged."
   }
 
-  ticker = ''
-  quote = 'quote content'
+  paramObj = {ticker:'INTC'}
+  quote = {
+    ticker: this.paramObj.ticker,
+    name:'', 
+    currency: '', 
+    price: 0.00, 
+    changePercent: 0.00,
+    peg: 0.00,
+    dividend: 0.00}
 
   //fetch news from Yahoo API
   getNews(){
-    this.news.title = 'new news title';
-    this.news.summary = 'news content';
+    this.YahooFinService.getNews()
+      .subscribe( (data:any)=>{
+      } )
+      this.news.title = "Op-ed: An ‘active wealth’ plan can maximize long-term financial success"
+      this.news.summary = "Last year was a stark example of how active wealth practices can grow \
+      personal wealth. Strategies involving three activities — investing, borrowing and managing \
+      taxes — could have created 20% to 30% more wealth for the investor who followed them, compar\
+      ed to someone with an identical portfolio who allowed inertia — or worse, emotion — to take hold."
+      console.log()
   }
 
   //fetch quote from Yahoo API
   getQuote(){
-      this.quote = 'updated quote';
+      console.log("!!")
+
+      this.YahooFinService.getName(this.paramObj.ticker)
+      .subscribe( (data:any)=>{
+        console.log("!!!")
+        console.log(data)
+        this.quote.name = data;
+      })
+
+      this.YahooFinService.getCurrency(this.paramObj.ticker)
+       .subscribe( (data:any)=>{
+         this.quote.currency = data;
+       })
+
+      this.YahooFinService.getCurrentPrice(this.paramObj.ticker)
+       .subscribe( (data:any)=>{
+         this.quote.price = data;
+       })
+       
+       this.YahooFinService.getChange(this.paramObj.ticker)
+       .subscribe( (data:any)=>{
+         this.quote.changePercent = data;
+       })
+
+       this.YahooFinService.getDividend(this.paramObj.ticker)
+       .subscribe( (data:any)=>{
+         this.quote.dividend = data;
+       })
+
   }
 
-  constructor() { }
+  constructor(private YahooFinService:YahooFinService) { }
 
   ngOnInit(): void {
-    //refresh the news 
+    //refresh the news when initialize
     // this.getNews();
   }
 
