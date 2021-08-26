@@ -5,7 +5,7 @@
         Current Price: {{currPrice | currency}}<br>
         Bought Price: {{avgPurchasePrice | currency}}<br>
         Shares owned: {{quantity}}</p>
-    <input type='number' min="0" [(ngModel)]='buySellQuantity' name='BuySell'/>
+    <input class = "form-input" type='number' min="0" [(ngModel)]='buySellQuantity' name='BuySell'/>
     <button (click)=buyShares() class="btn btn-success"> Buy </button>
     <button (click)=sellShares() class="btn btn-danger"> Sell </button><br/>
 </aside>

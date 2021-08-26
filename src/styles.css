@@ -15,11 +15,15 @@ button {
     margin: 5px;
 }
 
-.assetname {
+.assetname, .moneytotal {
     font-weight: bold;
 }
 
 #networth{
     font-weight: bold;
     font-size: 40px;
+}
+
+.form-input {
+    margin: 5px
 }
