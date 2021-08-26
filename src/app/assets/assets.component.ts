@@ -17,7 +17,8 @@ export class AssetsComponent implements OnInit {
       name: '',
       type: '',
       quantity: 0,
-      avgPurchasePrice:0}
+      avgPurchasePrice:0,
+      currPrice:0}
   ]
 
   accounts = [
@@ -37,9 +38,16 @@ export class AssetsComponent implements OnInit {
    }
 
   getAllInvestments(){
-    this.pminvestmentService.getApiData().subscribe( (data:any)=>{
-      console.log(data)
+    this.pminvestmentService.getApiData().subscribe((data:any) => {
       this.stocks = data
+      for (let d of this.stocks) {
+        let endpoint = "/get_current_price/id/".concat(String(d.id))
+        this.pminvestmentService.getApiData(endpoint).subscribe((price:any) => {
+          d.currPrice = price
+        })
+      }
+      console.log(this.stocks)
     })
   }
+
 }

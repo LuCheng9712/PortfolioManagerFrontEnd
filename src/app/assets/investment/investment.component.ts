@@ -11,6 +11,7 @@ export class InvestmentComponent implements OnInit {
   @Input() name:string = ''
   @Input() avgPurchasePrice:number = 0
   @Input() quantity:number = 0
+  @Input() currPrice:number = 0
 
   constructor() { }
 

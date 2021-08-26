@@ -1,8 +1,8 @@
 
 <aside>
-    <p>{{name}} <br/>
-        Stock Ticker: {{ticker}} <br>
-        Bought Price: {{avgPurchasePrice | currency}} <br> 
-        Shares owned: {{quantity}}
-    </p>
+    <p>{{name}}
+    <p>Stock Ticker: {{ticker}} </p>
+    <p *ngIf='currPrice > 0'>Current Price: {{currPrice | currency}} </p>
+    <p>Bought Price: {{avgPurchasePrice | currency}} </p>
+    <p>Shares owned: {{quantity}}</p> <br>
 </aside>
