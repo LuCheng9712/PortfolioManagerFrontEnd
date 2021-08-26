@@ -107,7 +107,7 @@ export class AssetsComponent implements OnInit {
   handleBuySell(data:any) {
     console.log(data)
     let stock = this.getInvestment(data.ticker)
-    if (stock) {
+    if (stock == null) {
       return
     }
     if (data.isSell && data.buySellQuantity >= data.quantity) {
@@ -123,11 +123,15 @@ export class AssetsComponent implements OnInit {
     } else if (!data.isSell) {
       let endpoint = "/get_current_price/ticker/".concat(data.ticker)
       this.pminvestmentService.getInvestmentData(endpoint).subscribe((price:any) => {
-        this.updateStockParams.id = stock.id
-        this.updateStockParams.ticker = stock.ticker
-        this.updateStockParams.name = stock.name
-        this.updateStockParams.quantity = stock.quantity - data.buySellQuantity
-        this.updateStockParams.avgPurchasePrice = stock.avgPurchasePrice
+        let prev_avg = stock ? stock.avgPurchasePrice : 0
+        let prev_quantity = stock ? stock.quantity : 0
+        let newAvg = (prev_avg * prev_quantity + price * data.buySellQuantity) / (prev_quantity + data.buySellQuantity)
+        
+        this.updateStockParams.id = stock ? stock.id : 0
+        this.updateStockParams.ticker = stock ? stock.ticker : ""
+        this.updateStockParams.name = stock ? stock.name : ""
+        this.updateStockParams.quantity = stock ? stock.quantity - data.buySellQuantity : 0
+        this.updateStockParams.avgPurchasePrice = stock ? newAvg : 0
         this.updateInvestment()
       })
     }
@@ -143,7 +147,7 @@ export class AssetsComponent implements OnInit {
   }
 
   updateInvestment() {
-
+    
   }
 
 }
