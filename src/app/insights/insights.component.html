@@ -1,15 +1,31 @@
 
     <div class="container">
         <h2>Insights</h2>
+        <br>
+        <br>
+        <!--News-->
         <h3>News for Today</h3>
+        <button class="btn btn-info" (click)='getNews()'>getNews</button>
+        <h4>{{news.title}}</h4>
         <p>{{news.summary}}</p>
-        
+        <br>
+        <br>
+        <!--Stock Quote-->
+        <h3>Get Quote of Stock: </h3>
         <form>
-            Get Quote of Stock: <input type="text" ng-model="ticker">
+            
+            <input type='text' [(ngModel)]='paramObj.ticker' name='ticker' placeholder='Stock Ticker'/>
         </form>
-        <p>You entered: {{ticker}}</p>
-        <button (click)='getQuote()'>Get a quote</button>
-        <p>{{quote}}</p>
+        <p>You entered: {{paramObj.ticker}}</p>
+        <button class="btn btn-info" (click)='getQuote()'>Get a quote</button>
+        <br>
+        <ul class="list-group">
+            <li class="list-group-item">Symbol: {{paramObj.ticker}}</li>
+            <li class="list-group-item">Price: {{quote.price}}</li>
+            <li class="list-group-item">Change%: {{quote.changePercent}}</li>
+            <li class="list-group-item">Dividend: {{quote.dividend}}</li>
+        </ul>
+        
     </div>
 
 
