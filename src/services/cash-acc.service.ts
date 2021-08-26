@@ -17,4 +17,10 @@ export class CashAccService {
   removeCashAccId(id:number){
     return this.http.delete(`http://portfoliomanager-portfoliomanager.namdevops8.conygre.com/cash_accounts/deletebyid/${id}`)
   }
+  depositCash(id:number, depositAmount:number){
+    return this.http.post(`http://portfoliomanager-portfoliomanager.namdevops8.conygre.com/cash_accounts/deposit/${depositAmount}`, {id:`${id}`, name:'', amount:0})
+  }
+  withdrawCash(id:number, withdrawAmount:number){
+    return this.http.post(`http://portfoliomanager-portfoliomanager.namdevops8.conygre.com/cash_accounts/withdraw/${withdrawAmount}`, {id:`${id}`, name:'', amount:0})
+  }
 }
