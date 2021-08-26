@@ -19,6 +19,7 @@ export class AssetsComponent implements OnInit {
   newStockParams = {id: 0, ticker:"", name: "", type:"", quantity: 0, avgPurchasePrice: 0};
   deleteStockTicker = "";
   updateStockParams = {id: 0, ticker:"", name: "", type:"", quantity: 0, avgPurchasePrice: 0};
+  totalInvestments = 0
 
   accounts = [
     {name:'askjdn', amount:5, id:0}
@@ -69,15 +70,18 @@ export class AssetsComponent implements OnInit {
   }
 
   getInvestmentCurrPrice() {
+    this.totalInvestments = 0
     for (let d of this.stocks) {
       let endpoint = "/get_current_price/id/".concat(String(d.id))
       this.pminvestmentService.getInvestmentData(endpoint).subscribe((price:any) => {
         d.currPrice = price
+        this.totalInvestments += d.currPrice * d.quantity
       })
     }
   }
 
   buyInvestment() {
+    this.newStockParams.type = "stocks"
     let endpoint = "/get_current_price/ticker/".concat(this.newStockParams.ticker)
     this.pminvestmentService.getInvestmentData(endpoint).subscribe((price:any) => {
       this.newStockParams.avgPurchasePrice = price

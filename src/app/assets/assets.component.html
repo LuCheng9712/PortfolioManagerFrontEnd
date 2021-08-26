@@ -34,18 +34,21 @@
 <div class="col-sm">
 <!--Investments-->
 <h3>Investments</h3>
-<button (click)=getAllInvestments() class="btn btn-primary">Update Investments</button><br>
+<hr>
+<p>Total Investments: {{totalInvestments | currency}}</p>
+<button (click)=getAllInvestments() class="btn btn-primary">Update Investments</button>
+<hr>
 <form>
     <input type='text' [(ngModel)]='newStockParams.ticker' name='ticker' placeholder='Ticker'/>
     <input type='text' [(ngModel)]='newStockParams.name' name='name' placeholder='Name'/>
-    <input type='text' [(ngModel)]='newStockParams.type' name='type' placeholder='Investment Type'/>
     <input type='number' min="0" [(ngModel)]='newStockParams.quantity' name='quantity' placeholder='Quantity to purchase'/>
-</form>
 <button (click)=buyInvestment() class="btn btn-success">Buy Shares</button><br>
+</form>
+<hr>
 <form>
     <input type='text' [(ngModel)]='deleteStockTicker' name='ticker' placeholder='Ticker'/>
+    <button (click)=sellInvestment() class="btn btn-danger">Sell All Shares</button><br>
 </form>
-<button (click)=sellInvestment() class="btn btn-danger">Sell All Shares</button><br>
 <app-investment
     *ngFor="let item of stocks"
     [name]='item.name'
