@@ -15,6 +15,10 @@ button {
     margin: 5px;
 }
 
-.assetname {
+.assetname, .moneytotal {
     font-weight: bold;
+}
+
+.form-input {
+    margin: 5px
 }

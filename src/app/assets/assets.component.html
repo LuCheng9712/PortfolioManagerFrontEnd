@@ -14,20 +14,20 @@
 <!--Add Account-->
 <h5>Add an account</h5>
 <form>
-    <input type='text' [(ngModel)]='paramObj.name' name='name' placeholder='Account Name'/>
-    <input type='number' min="0" [(ngModel)]='paramObj.amount' name='amount' placeholder='Initial Deposit'/>
+    <input class = "form-input" type='text' [(ngModel)]='paramObj.name' name='name' placeholder='Account Name'/>
+    <input class = "form-input" type='number' min="0" [(ngModel)]='paramObj.amount' name='amount' placeholder='Initial Deposit'/>
+    <button (click)=addCashAcc() class="btn btn-success">Add Account</button><br/>
 </form><br/>
-<button (click)=addCashAcc() class="btn btn-success">Add Account</button><br/>
 <hr>
 
 <!--Remove Account-->
 <h5>Remove Account By ID</h5>
-<input type='number' min="0" [(ngModel)]='accountRemoverId' name='Remove Account'/><br/><br/>
+<input class = "form-input" type='number' min="0" [(ngModel)]='accountRemoverId' name='Remove Account'/>
 <button (click)=deleteCashAccById() class="btn btn-danger">Delete Account</button><br/>
 <hr>
 
 <h5>Remove Account By Name</h5>
-<input type='text' min="0" [(ngModel)]='accountRemoverName' name='Remove Account Name' placeholder='Account Name'/><br/><br/>
+<input class = "form-input" type='text' min="0" [(ngModel)]='accountRemoverName' name='Remove Account Name' placeholder='Account Name'/>
 <button (click)=deleteCashAccByName() class="btn btn-danger">Delete Account</button><br/>
 </div>
 
@@ -35,18 +35,18 @@
 <!--Investments-->
 <h3>Investments</h3>
 <hr>
-<p>Total Investments: {{totalInvestments | currency}}</p>
+<p>Total Investments: <span class="moneytotal">{{totalInvestments | currency}}</span></p>
 <button (click)=getAllInvestments() class="btn btn-primary">Update Investments</button>
 <hr>
 <form>
-    <input type='text' [(ngModel)]='newStockParams.ticker' name='ticker' placeholder='Ticker'/>
-    <input type='text' [(ngModel)]='newStockParams.name' name='name' placeholder='Name'/>
-    <input type='number' min="0" [(ngModel)]='newStockParams.quantity' name='quantity' placeholder='Quantity to purchase'/>
+    <input class = "form-input" type='text' [(ngModel)]='newStockParams.ticker' name='ticker' placeholder='Ticker'/>
+    <input class = "form-input" type='text' [(ngModel)]='newStockParams.name' name='name' placeholder='Name'/>
+    <input class = "form-input" type='number' min="0" [(ngModel)]='newStockParams.quantity' name='quantity' placeholder='Quantity to purchase'/>
 <button (click)=buyInvestment() class="btn btn-success">Buy Shares</button><br>
 </form>
 <hr>
 <form>
-    <input type='text' [(ngModel)]='deleteStockTicker' name='ticker' placeholder='Ticker'/>
+    <input class = "form-input" type='text' [(ngModel)]='deleteStockTicker' name='ticker' placeholder='Ticker'/>
     <button (click)=sellInvestment() class="btn btn-danger">Sell All Shares</button><br>
 </form>
 <app-investment
