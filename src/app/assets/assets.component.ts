@@ -94,9 +94,10 @@ export class AssetsComponent implements OnInit {
   }
 
   sellInvestment(){
+    console.log("sell investment")
     if (this.deleteStockTicker != "") {
       console.log(this.deleteStockTicker)
-      this.pminvestmentService.deleteInvestmentTicker(this.deleteStockTicker, "/ticker/")
+      this.pminvestmentService.deleteInvestment(this.deleteStockTicker, "/ticker/")
       .subscribe((data:any)=> {
         console.log(data)
         this.getAllInvestments()
@@ -105,15 +106,14 @@ export class AssetsComponent implements OnInit {
   }
 
   handleBuySell(data:any) {
-    console.log(data)
     let stock = this.getInvestment(data.ticker)
     if (stock == null) {
       return
     }
-    if (data.isSell && data.buySellQuantity >= data.quantity) {
+    if (data.isSell && data.buySellQuantity >= data.currQuantity) {
       this.deleteStockTicker = data.ticker
       this.sellInvestment()
-    } else if (data.isSell && data.buySellQuantity < data.quantity) {
+    } else if (data.isSell && (data.buySellQuantity < data.currQuantity)) {
       this.updateStockParams.id = stock.id
       this.updateStockParams.ticker = stock.ticker
       this.updateStockParams.name = stock.name
@@ -130,7 +130,7 @@ export class AssetsComponent implements OnInit {
         this.updateStockParams.id = stock ? stock.id : 0
         this.updateStockParams.ticker = stock ? stock.ticker : ""
         this.updateStockParams.name = stock ? stock.name : ""
-        this.updateStockParams.quantity = stock ? stock.quantity - data.buySellQuantity : 0
+        this.updateStockParams.quantity = stock ? stock.quantity + data.buySellQuantity : 0
         this.updateStockParams.avgPurchasePrice = stock ? newAvg : 0
         this.updateInvestment()
       })
@@ -147,7 +147,10 @@ export class AssetsComponent implements OnInit {
   }
 
   updateInvestment() {
-    
+    this.pminvestmentService.updateInvestmentTicker(this.updateStockParams, "").subscribe((data:any) => {
+      console.log(data)
+      this.getAllInvestments()
+    })
   }
 
 }

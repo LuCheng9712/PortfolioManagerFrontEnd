@@ -5,5 +5,6 @@ export class apiEndpoints {
     public static pmInvestments = "http://portfoliomanager-portfoliomanager.namdevops8.conygre.com/investments"
     public static pmInvestmentsDelete = "http://portfoliomanager-portfoliomanager.namdevops8.conygre.com/investments/delete_investment"
     public static pmInvestmentsAdd = "http://portfoliomanager-portfoliomanager.namdevops8.conygre.com/investments/add_investment"
+    public static pmInvestmentsUpdate = "http://portfoliomanager-portfoliomanager.namdevops8.conygre.com/investments/update_investment"
 
 }
