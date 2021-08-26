@@ -6,3 +6,15 @@ a {
     color: black;
     font-size: large;
 }
+
+input[type='number']{
+    width: 80px;
+}
+
+button {
+    margin: 5px;
+}
+
+.assetname {
+    font-weight: bold;
+}
