@@ -4,7 +4,7 @@
 <div class="col-sm"> 
     Account ID: {{id}} <br/>Account Name: <span class="assetname">{{name}}</span> <br/>Balance: ${{amount}} <br/><br/>
 </div>
-<div class="col-sm">
+<div class="col-sm" >
     <input type='number' min="0" [(ngModel)]='depositAmount' name='Deposit' size="1"/>
     <button (click)=depositCash() class="btn btn-success"> Deposit</button><br/><br/>
     <input type='number' min="0" [(ngModel)]='withdrawAmount' name='Withdraw'/> 
