@@ -1,2 +1,8 @@
 <hr>
-<p>Account ID: {{id}} <br/>Account Name: {{name}} <br/>Balance: ${{amount}}</p>
+<p>
+    Account ID: {{id}} <br/>Account Name: {{name}} <br/>Balance: ${{amount}} <br/><br/>
+    <input type='number' min="0" [(ngModel)]='depositAmount' name='Deposit'/>
+    <button (click)=depositCash()> Deposit</button><br/><br/>
+    <input type='number' min="0" max=`{{amount}` [(ngModel)]='withdrawAmount' name='Withdraw'/>
+    <button (click)=withdrawCash()> Withdraw</button><br/>
+</p>
