@@ -4,6 +4,7 @@ import { AssetsComponent } from './assets/assets.component';
 import { InsightsComponent } from './insights/insights.component'
 
 const routes: Routes = [
+  {path:'', component:AssetsComponent},
   {path:'assets', component:AssetsComponent},
   {path:'insights', component:InsightsComponent}
 ];
